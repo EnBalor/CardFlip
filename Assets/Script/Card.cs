@@ -21,12 +21,7 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("card_flip"))
-        {
-            //find 함수는 사양에 영향을 끼치니 지양
-            transform.Find("Front").gameObject.SetActive(false);
-            transform.Find("Back").gameObject.SetActive(true);
-        }
+        
     }
 
     public void Setting(int number)
@@ -42,8 +37,6 @@ public class Card : MonoBehaviour
         {
             audioSource.PlayOneShot(flipSound);
             anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
 
             if (GameManager.instance.firstCard == null)
             {
