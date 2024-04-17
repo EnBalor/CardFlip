@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            NameTxt.text = "Ω«∆–!";
+            NameTxt.text = "Ïã§Ìå®!";
             NameTxt.color = Color.red;
             time -= 1f;
             IncreaseTime.SetActive(true);
@@ -195,19 +195,19 @@ public class GameManager : MonoBehaviour
         switch (firstCard.idx)
         {
             case 0: case 1:
-                NameTxt.text = "±Ë√¢ø¨";
+                NameTxt.text = "ÍπÄÏ∞ΩÏó∞";
                 break;
             case 2: case 3:
-                NameTxt.text = "π⁄º∫¡ÿ";
+                NameTxt.text = "Î∞ïÏÑ±Ï§Ä";
                 break;
             case 4: case 5:
-                NameTxt.text = "π⁄Ω≈»Ø";
+                NameTxt.text = "Î∞ïÏã†Ìôò";
                 break;
             case 6: case 7:
-                NameTxt.text = "¿Ãº≠øµ";
+                NameTxt.text = "Ïù¥ÏÑúÏòÅ";
                 break;
             case 8: case 9:
-                NameTxt.text = "¿±¡§∫Û";
+                NameTxt.text = "Ïú§Ï†ïÎπà";
                 break;
         }
     }
@@ -216,3 +216,4 @@ public class GameManager : MonoBehaviour
         timeAfterFirstCardFlip = second;
     }
 }
+

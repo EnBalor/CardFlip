@@ -10,9 +10,9 @@ public class StageButton : MonoBehaviour
     public Text bntTxt;
     public void ChooseStage()
     {
-        PlayerPrefs.SetString("StageLevel", bntTxt.text); // StageLevel¿¡ ¹öÆ°ÀÇ ÅØ½ºÆ® ÀúÀå(Easy, Normal, Hard)
+        PlayerPrefs.SetString("StageLevel", bntTxt.text); // StageLevelì— ë²„íŠ¼ì˜ í…ìŠ¤íŠ¸ ì €ì¥(Easy, Normal, Hard)
 
-        // ³­ÀÌµµ¸¦ Á¤¼ö·Î ÀúÀå(1, 2, 3)
+        // ë‚œì´ë„ë¥¼ ì •ìˆ˜ë¡œ ì €ì¥(1, 2, 3)
         if (PlayerPrefs.GetString("StageLevel") == "Easy")
         {
             PlayerPrefs.SetInt("Difficulty", 1);

@@ -11,7 +11,7 @@ public class RetryButton : MonoBehaviour
         SceneManager.LoadScene("StageScene");
     }
 
-    public void Reset() //Å×½ºÆ®¿ë ¸®¼Â¹öÆ°
+    public void Reset() //í…ŒìŠ¤íŠ¸ìš© ë¦¬ì…‹ë²„íŠ¼
     {
         PlayerPrefs.DeleteKey("Easy");
         PlayerPrefs.DeleteKey("Normal");
@@ -19,3 +19,4 @@ public class RetryButton : MonoBehaviour
         SceneManager.LoadScene("StageScene");
     }
 }
+

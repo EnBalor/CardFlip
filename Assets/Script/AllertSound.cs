@@ -35,3 +35,4 @@ public class AllertSound : MonoBehaviour
         yield return null;
     }
 }
+
