@@ -14,7 +14,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ³­ÀÌµµ(1,2,3) °ªÀ¸·Î ¹è¿­ Å©±â Á¶Á¤
+        // ë‚œì´ë„(1,2,3) ê°’ìœ¼ë¡œ ë°°ì—´ í¬ê¸° ì¡°ì •  
         int diff = PlayerPrefs.GetInt("Difficulty") * 4;
         Array.Resize(ref arr, diff + 4);
 
@@ -29,7 +29,7 @@ public class Board : MonoBehaviour
             }
         }
 
-        //ÀÏÁ¤ °£°İÀ¸·Î Ä«µå¸¦ »ı¼ºÇÏ±â À§ÇØ ÄÚ·çÆ¾ »ç¿ë
+        //ì¼ì • ê°„ê²©ìœ¼ë¡œ ì¹´ë“œë¥¼ ìƒì„±í•˜ê¸° ìœ„í•´ ì½”ë£¨í‹´ ì‚¬ìš©
         StartCoroutine(CardAppear());
     }
 
@@ -48,8 +48,9 @@ public class Board : MonoBehaviour
 
             GameManager.instance.cardCount++;
 
-            //Ä«µå°¡ ÇÑ¹ø¿¡ »ı¼ºµÇÁö ¾Êµµ·Ï ¾à°£ÀÇ ½Ã°£ °£°İÀ» ÁÜ
+            //ì¹´ë“œê°€ í•œë²ˆì— ìƒì„±ë˜ì§€ ì•Šë„ë¡ ì•½ê°„ì˜ ì‹œê°„ ê°„ê²©ì„ ì¤Œ
             yield return new WaitForSeconds(0.1f);
         }
     }
 }
+

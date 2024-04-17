@@ -23,7 +23,7 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public void Setting(int number)
@@ -58,16 +58,15 @@ public class Card : MonoBehaviour
             {
                 isFlipedOnce = true;
                 SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
-                //»öº¯È­°¡ Á» ¹Ì¹ÌÇÑµí, ±êÇãºê ÀÌÈÄ ÇÇµå¹éÇØ¼­ ¼öÁ¤ÇÏ´Â°É·Î
-                //½ÃÀÛÇÒ¶§ È¿°úÀ½ Ãß°¡ »ı°¢ÇØº¸±â
+
+                //ìƒ‰ë³€í™”ê°€ ì¢€ ë¯¸ë¯¸í•œë“¯, ê¹ƒí—ˆë¸Œ ì´í›„ í”¼ë“œë°±í•´ì„œ ìˆ˜ì •í•˜ëŠ”ê±¸ë¡œ
+                //ì‹œì‘í• ë•Œ íš¨ê³¼ìŒ ì¶”ê°€ ìƒê°í•´ë³´ê¸°
                 spriteRenderer.color = new Color(0.7f, 0.7f, 0.7f, 1);
             }
         }
     }
 
 
-    //ÀÎº¸Å© °ü·Ã ÇÔ¼ö´Â °°ÀÌ ÄÚ·çÆ¾ °øºÎÇÏ´Â ½Ã°£ °¡Áö¸é ÁÁÀ» °Í °°À½
-    //ÄÚ·çÆ¾À¸·Î ¼öÁ¤ÇÏ´Â ÀÛ¾÷ ÇÏ³ª¾¿ ÇÏ¸é ÁÁÀ»µí
     public void DestroyCard()
     {
         Invoke("DestroyCardInvoke", 0.5f);
@@ -90,3 +89,4 @@ public class Card : MonoBehaviour
         back.SetActive(true);
     }
 }
+
