@@ -63,7 +63,7 @@ public class Card : MonoBehaviour
                 SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
                 //색변화가 좀 미미한듯, 깃허브 이후 피드백해서 수정하는걸로
                 //시작할때 효과음 추가 생각해보기
-                spriteRenderer.color = new Color(0.9f, 0.9f, 0.9f, 1);
+                spriteRenderer.color = new Color(0.7f, 0.7f, 0.7f, 1);
             }
         }
     }

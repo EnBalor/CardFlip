@@ -8,16 +8,8 @@ using System.Runtime.InteropServices;
 public class Board : MonoBehaviour
 {
     public GameObject card;
-    public GameObject spawnPoint;
-
-    GameObject go;
 
     public int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-
-    float speed = 5.0f;
-
-    float cardPosX = 0f;
-    float cardPosY = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,27 +33,16 @@ public class Board : MonoBehaviour
         StartCoroutine(CardAppear());
     }
 
-    private void Update()
-    {
-        //go.transform.position = new Vector2(x, y);
-
-        Vector3 cardSet = new Vector3(cardPosX, cardPosY, 0f);
-        Vector3 dir = cardSet - spawnPoint.transform.position;
-
-        Debug.Log(cardSet);
-
-        go.transform.Translate(dir * speed * Time.deltaTime);
-
-    }
-
     private IEnumerator CardAppear()
     {
         for (int i = 0; i < arr.Length; i++)
         {
-            go = Instantiate(card, spawnPoint.transform);
+            GameObject go = Instantiate(card, this.transform);
 
-            cardPosX = (i % 4) * 1.4f - 2.1f;
-            cardPosY = (i / 4) * 1.4f - 3.0f;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+
+            go.transform.position = new Vector2(x, y);
 
             go.GetComponent<Card>().Setting(arr[i]);
 
