@@ -28,10 +28,10 @@ public class Board : MonoBehaviour
             }
         }
 
-        StartCoroutine(CardApear());
+        StartCoroutine(CardAppear());
     }
 
-    private IEnumerator CardApear()
+    private IEnumerator CardAppear()
     {
 
         for (int i = 0; i < arr.Length; i++)
