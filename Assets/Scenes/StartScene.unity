@@ -352,7 +352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fbe0a7d205aa877419658e02e4d890a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca57aa0a73bd86143be2ef9ea9c9edbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -623,7 +623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB974\uD0C4\uC774\uB97C \uCC3E\uC544\uB77C"
+  m_Text: "\uD56B\uC2DD\uC2A4 \uC870\uC6D0 \uB9DE\uCD94\uAE30"
 --- !u!222 &1110838130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -836,7 +836,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -930,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26998a7c35333194dbf66fae267c83d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   backGroundMusic: {fileID: 8300000, guid: 025aee724af47074aa9f7ccbbf5aff2b, type: 3}
 --- !u!4 &1700252769
 Transform:
