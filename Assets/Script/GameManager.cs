@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     string key = "bestTime";
 
+    float timeAfterFirstCardFlip = 0.0f;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -91,6 +93,17 @@ public class GameManager : MonoBehaviour
             animator.SetBool("AllertTxt", true);
 
             AudioManager.instance.audioSource.pitch = 1.4f;
+        }
+
+        if (firstCard)
+        {
+            timeAfterFirstCardFlip -= Time.deltaTime;
+            if (timeAfterFirstCardFlip <= 0)
+            {
+                firstCard.GetComponent<Card>().CloseCard();
+                SetTimeAfterFirstCardFlip(0.0f);
+                firstCard = null;
+            }
         }
     }
 
@@ -194,5 +207,9 @@ public class GameManager : MonoBehaviour
                 NameTxt.text = "À±Á¤ºó";
                 break;
         }
+    }
+    public void SetTimeAfterFirstCardFlip(float second)
+    {
+        timeAfterFirstCardFlip = second;
     }
 }
