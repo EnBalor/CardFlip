@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Z))
         {
             time = 10.0f;
-        }
+        } //í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œ í•œë“¯?
 
         if(time <= 10.0f)
         {
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            NameTxt.text = "½ÇÆÐ!";
+            NameTxt.text = "ì‹¤íŒ¨!";
             NameTxt.color = Color.red;
             time -= 1f;
             IncreaseTime.SetActive(true);
@@ -178,34 +178,34 @@ public class GameManager : MonoBehaviour
         switch (firstCard.idx)
         {
             case 0:
-                NameTxt.text = "±èÃ¢¿¬";
+                NameTxt.text = "ê¹€ì°½ì—°";
                 break;
             case 1:
-                NameTxt.text = "±èÃ¢¿¬";
+                NameTxt.text = "ê¹€ì°½ì—°";
                 break;
             case 2:
-                NameTxt.text = "¹Ú¼ºÁØ";
+                NameTxt.text = "ë°•ì„±ì¤€";
                 break;
             case 3:
-                NameTxt.text = "¹Ú¼ºÁØ";
+                NameTxt.text = "ë°•ì„±ì¤€";
                 break;
             case 4:
-                NameTxt.text = "¹Ú½ÅÈ¯";
+                NameTxt.text = "ë°•ì‹ í™˜";
                 break;
             case 5:
-                NameTxt.text = "¹Ú½ÅÈ¯";
+                NameTxt.text = "ë°•ì‹ í™˜";
                 break;
             case 6:
-                NameTxt.text = "ÀÌ¼­¿µ";
+                NameTxt.text = "ì´ì„œì˜";
                 break;
             case 7:
-                NameTxt.text = "ÀÌ¼­¿µ";
+                NameTxt.text = "ì´ì„œì˜";
                 break;
             case 8:
-                NameTxt.text = "À±Á¤ºó";
+                NameTxt.text = "ìœ¤ì •ë¹ˆ";
                 break;
             case 9:
-                NameTxt.text = "À±Á¤ºó";
+                NameTxt.text = "ìœ¤ì •ë¹ˆ";
                 break;
 
         }
