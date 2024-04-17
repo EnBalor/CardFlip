@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
 
     public bool isStart = false;
 
-    string key = "bestTime";
+    string easyKey = "easyBest";
+    string normalKey = "normalBest";
+    string hardKey = "hardKey";
 
     float timeAfterFirstCardFlip = 0.0f;
 
@@ -56,7 +58,21 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
-        bestTime.text = PlayerPrefs.GetFloat(key).ToString("N2");
+        if (PlayerPrefs.GetInt("Difficulty") == 1)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(easyKey).ToString("N2");
+        }
+
+        else if (PlayerPrefs.GetInt("Difficulty") == 2)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(normalKey).ToString("N2");
+        }
+
+        else if (PlayerPrefs.GetInt("Difficulty") == 3)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(hardKey).ToString("N2");
+        }
+
         time = 30f;
         score = 100f;
         openCount = 0;
@@ -167,27 +183,77 @@ public class GameManager : MonoBehaviour
     {
         nowTime.text = time.ToString("N2");
 
-        if (PlayerPrefs.HasKey(key))
+        if(PlayerPrefs.GetInt("Difficulty") == 1)
         {
-            float best = PlayerPrefs.GetFloat(key);
-            if (best < time)
+            if (PlayerPrefs.HasKey(easyKey))
             {
-                PlayerPrefs.SetFloat(key, time);
-                bestTime.text = time.ToString("N2");
+                float best = PlayerPrefs.GetFloat(easyKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(easyKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
             }
 
             else
             {
+                PlayerPrefs.SetFloat(easyKey, time);
                 bestTime.text = time.ToString("N2");
             }
         }
 
-        else
+        if (PlayerPrefs.GetInt("Difficulty") == 2)
         {
-            PlayerPrefs.SetFloat(key, time);
-            bestTime.text = time.ToString("N2");
+            if (PlayerPrefs.HasKey(normalKey))
+            {
+                float best = PlayerPrefs.GetFloat(normalKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(normalKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
+            }
+
+            else
+            {
+                PlayerPrefs.SetFloat(normalKey, time);
+                bestTime.text = time.ToString("N2");
+            }
         }
 
+        if (PlayerPrefs.GetInt("Difficulty") == 3)
+        {
+            if (PlayerPrefs.HasKey(normalKey))
+            {
+                float best = PlayerPrefs.GetFloat(hardKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(hardKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
+            }
+
+            else
+            {
+                PlayerPrefs.SetFloat(hardKey, time);
+                bestTime.text = time.ToString("N2");
+            }
+        }
     }
 
     void SettingNameTxt()

@@ -58,16 +58,15 @@ public class Card : MonoBehaviour
             {
                 isFlipedOnce = true;
                 SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
+
                 //색변화가 좀 미미한듯, 깃허브 이후 피드백해서 수정하는걸로
                 //시작할때 효과음 추가 생각해보기
-                spriteRenderer.color = new Color(0.9f, 0.9f, 0.9f, 1);
+                spriteRenderer.color = new Color(0.7f, 0.7f, 0.7f, 1);
             }
         }
     }
 
 
-    //인보크 관련 함수는 같이 코루틴 공부하는 시간 가지면 좋을 것 같음
-    //코루틴으로 수정하는 작업 하나씩 하면 좋을듯
     public void DestroyCard()
     {
         Invoke("DestroyCardInvoke", 0.5f);
