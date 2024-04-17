@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         bestTime.text = PlayerPrefs.GetFloat(key).ToString("N2");
         time = 30f;
+        score = 100f;
         openCount = 0;
     }
 
@@ -177,37 +178,21 @@ public class GameManager : MonoBehaviour
     {
         switch (firstCard.idx)
         {
-            case 0:
+            case 0: case 1:
                 NameTxt.text = "김창연";
                 break;
-            case 1:
-                NameTxt.text = "김창연";
-                break;
-            case 2:
+            case 2: case 3:
                 NameTxt.text = "박성준";
                 break;
-            case 3:
-                NameTxt.text = "박성준";
-                break;
-            case 4:
+            case 4: case 5:
                 NameTxt.text = "박신환";
                 break;
-            case 5:
-                NameTxt.text = "박신환";
-                break;
-            case 6:
+            case 6: case 7:
                 NameTxt.text = "이서영";
                 break;
-            case 7:
-                NameTxt.text = "이서영";
-                break;
-            case 8:
+            case 8: case 9:
                 NameTxt.text = "윤정빈";
                 break;
-            case 9:
-                NameTxt.text = "윤정빈";
-                break;
-
         }
     }
 }
