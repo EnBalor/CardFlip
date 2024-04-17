@@ -174,7 +174,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5361537567358768977}
-    m_Position: {x: 530, y: 270, z: 0}
+    m_Position: {x: 490, y: 330, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -192,7 +192,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Card_fliping
+  m_Name: CardFliping
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -219,7 +219,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: card_flip
+  m_Name: CardFliped
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

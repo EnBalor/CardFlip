@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public AudioClip flipSound;
     public AudioClip matchedSound;
     public AudioClip unMatchedSound;
+    public AudioClip gameStartSound;
 
     public bool isStart = false;
 
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
         time = 30f;
         score = 100f;
         openCount = 0;
+
+        audioSource.PlayOneShot(gameStartSound);
     }
 
     // Update is called once per frame

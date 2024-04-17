@@ -251,6 +251,7 @@ MonoBehaviour:
   flipSound: {fileID: 8300000, guid: f4f15a7fda57f0e48be7fccadf450cb9, type: 3}
   matchedSound: {fileID: 8300000, guid: 5e5ba59c97f0c9446a6fdc5d47116ca9, type: 3}
   unMatchedSound: {fileID: 8300000, guid: 87c4c4c2936940042a7b59043fc1300b, type: 3}
+  gameStartSound: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
   isStart: 0
 --- !u!4 &186603549
 Transform:
