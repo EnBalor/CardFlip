@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject endTxt;
-    public GameObject scoreObj;
     public GameObject IncreaseTime;
 
     public int cardCount = 0;
@@ -138,7 +137,6 @@ public class GameManager : MonoBehaviour
             {
                 BestTime();
                 endTxt.SetActive(true);
-                scoreObj.SetActive(true);
                 score = time / openCount * 100;
                 scoreTxt.text = score.ToString("N2");
 
