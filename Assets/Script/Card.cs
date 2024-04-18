@@ -9,6 +9,7 @@ public class Card : MonoBehaviour
 
     public GameObject front;
     public GameObject back;
+    public GameObject button;
 
     public Animator anim;
 
@@ -21,30 +22,26 @@ public class Card : MonoBehaviour
     const float MaxTimeAfterFirstCardFlip = 5.0f;
     const float ZeroTime = 0.0f;
 
-    private void Update()
-    {
-    }
-
     public void Setting(int number)
     {
         idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"Card{idx}");
+        frontImage.sprite = Resources.Load<Sprite>($"Card{idx}");   
         audioSource = GetComponent<AudioSource>();
     }
 
     public void OpenCard()
     {
-        if (GameManager.instance.isStart == true)
+        if(GameManager.instance.isStart == true)
         {
             audioSource.PlayOneShot(flipSound);
             anim.SetBool("isOpen", true);
+            button.SetActive(false);
 
             if (GameManager.instance.firstCard == null)
             {
                 GameManager.instance.firstCard = this;
                 GameManager.instance.SetTimeAfterFirstCardFlip(MaxTimeAfterFirstCardFlip);
             }
-
             else
             {
                 GameManager.instance.secondCard = this;
@@ -78,6 +75,7 @@ public class Card : MonoBehaviour
 
     public void CloseCard()
     {
+        button.SetActive(true);
         Invoke("CloseCardInvoke", 0.5f);
     }
 

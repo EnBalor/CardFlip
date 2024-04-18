@@ -53,24 +53,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private string GetKey()
+    {
+        switch (PlayerPrefs.GetInt("Difficulty"))
+        {
+            case 1:
+                return easyKey;
+            case 2:
+                return normalKey;
+            default:
+                return hardKey;
+
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1.0f;
-        if (PlayerPrefs.GetInt("Difficulty") == 1)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(easyKey).ToString("N2");
-        }
-
-        else if (PlayerPrefs.GetInt("Difficulty") == 2)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(normalKey).ToString("N2");
-        }
-
-        else if (PlayerPrefs.GetInt("Difficulty") == 3)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(hardKey).ToString("N2");
-        }
+        
+        bestTime.text = PlayerPrefs.GetFloat(GetKey()).ToString("N2");
 
         time = 30f;
         score = 100f;
@@ -82,33 +84,33 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cardCount == board.arr.Length)
+        if(cardCount == board.arr.Length)
         {
             isStart = true;
             animator.SetBool("TxtAnimStart", true);
         }
 
-        if (isStart == true)
+        if(isStart == true)
         {
             time -= Time.deltaTime;
             timeTxt.text = time.ToString("N2");
             openCountTxt.text = openCount.ToString();
         }
 
-        if (time <= 0.0f)
+        if(time <= 0.0f)
         {
             endTxt.SetActive(true);
             Time.timeScale = 0.0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             time = 10.0f;
-        } //테스트용으로 한듯?
+        }
 
-        if (time <= 10.0f)
+        if(time <= 10.0f)
         {
-            animator.SetBool("AllertTxt", true);
+            animator.SetBool("AlertTxt", true);
 
             AudioManager.instance.audioSource.pitch = 1.4f;
         }
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
-        if (firstCard.idx == secondCard.idx)
+        if(firstCard.idx == secondCard.idx)
         {
             audioSource.PlayOneShot(matchedSound);
             firstCard.DestroyCard();
@@ -140,7 +142,7 @@ public class GameManager : MonoBehaviour
             {
                 BestTime();
                 endTxt.SetActive(true);
-                score = time / openCount * 100;
+                score = time / (1 + openCount) * 100;
                 scoreTxt.text = score.ToString("N2");
 
                 if (PlayerPrefs.GetString("StageLevel") == "Easy")
@@ -180,77 +182,20 @@ public class GameManager : MonoBehaviour
     private void BestTime()
     {
         nowTime.text = time.ToString("N2");
+        string key = GetKey();
 
-        if (PlayerPrefs.GetInt("Difficulty") == 1)
+        if (PlayerPrefs.HasKey(key))
         {
-            if (PlayerPrefs.HasKey(easyKey))
+            if (PlayerPrefs.GetFloat(key) < time)
             {
-                float best = PlayerPrefs.GetFloat(easyKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(easyKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(easyKey, time);
+                PlayerPrefs.SetFloat(key, time);
                 bestTime.text = time.ToString("N2");
             }
         }
-
-        if (PlayerPrefs.GetInt("Difficulty") == 2)
+        else
         {
-            if (PlayerPrefs.HasKey(normalKey))
-            {
-                float best = PlayerPrefs.GetFloat(normalKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(normalKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(normalKey, time);
-                bestTime.text = time.ToString("N2");
-            }
-        }
-
-        if (PlayerPrefs.GetInt("Difficulty") == 3)
-        {
-            if (PlayerPrefs.HasKey(normalKey))
-            {
-                float best = PlayerPrefs.GetFloat(hardKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(hardKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(hardKey, time);
-                bestTime.text = time.ToString("N2");
-            }
+            PlayerPrefs.SetFloat(key, time);
+            bestTime.text = time.ToString("N2");
         }
     }
 
@@ -258,24 +203,19 @@ public class GameManager : MonoBehaviour
     {
         switch (firstCard.idx)
         {
-            case 0:
-            case 1:
+            case 0: case 1:
                 NameTxt.text = "김창연";
                 break;
-            case 2:
-            case 3:
+            case 2: case 3:
                 NameTxt.text = "박성준";
                 break;
-            case 4:
-            case 5:
+            case 4: case 5:
                 NameTxt.text = "박신환";
                 break;
-            case 6:
-            case 7:
+            case 6: case 7:
                 NameTxt.text = "이서영";
                 break;
-            case 8:
-            case 9:
+            case 8: case 9:
                 NameTxt.text = "윤정빈";
                 break;
         }

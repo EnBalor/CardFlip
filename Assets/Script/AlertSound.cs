@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllertSound : MonoBehaviour
+public class AlertSound : MonoBehaviour
 {
     AudioSource audioSource;
 
-    public AudioClip allertSound;
+    public AudioClip alertSound;
 
     private bool audioPlayed = false;
 
@@ -14,7 +14,7 @@ public class AllertSound : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = this.allertSound;
+        audioSource.clip = this.alertSound;
     }
 
     private void Update()
@@ -35,4 +35,3 @@ public class AllertSound : MonoBehaviour
         yield return null;
     }
 }
-
