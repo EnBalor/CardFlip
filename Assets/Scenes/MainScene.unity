@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 608901742}
   - component: {fileID: 608901743}
   m_Layer: 0
-  m_Name: AllertSound
+  m_Name: AlertSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857db46917e92144d8a5f71d379ce184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allertSound: {fileID: 8300000, guid: 1a4a21a03aeabf048a9b762cc2cf3372, type: 3}
+  alertSound: {fileID: 0}
 --- !u!1 &673456390
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,7 @@ public class Board : MonoBehaviour
     void Start()
     {
         // 난이도(1,2,3) 값으로 배열 크기 조정  
-        int diff = PlayerPrefs.GetInt("Difficulty") * 4;
-        Array.Resize(ref arr, diff + 4);
+        Array.Resize(ref arr, PlayerPrefs.GetInt("Difficulty") * 4 + 4);
 
         for (int i = 0; i < arr.Length; i += 1)
         {
