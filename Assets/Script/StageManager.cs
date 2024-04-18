@@ -11,6 +11,9 @@ public class StageManager : MonoBehaviour
     public Button HardBtn;
     private void Start()
     {
+        Time.timeScale = 1.0f;
+        AudioManager.instance.audioSource.pitch = 1.0f;
+
         if (PlayerPrefs.GetInt("Easy") == 1)
         {
             /*
