@@ -9,6 +9,7 @@ public class Card : MonoBehaviour
 
     public GameObject front;
     public GameObject back;
+    public GameObject button;
 
     public Animator anim;
 
@@ -39,6 +40,7 @@ public class Card : MonoBehaviour
         {
             audioSource.PlayOneShot(flipSound);
             anim.SetBool("isOpen", true);
+            button.SetActive(false);
 
             if (GameManager.instance.firstCard == null)
             {
@@ -79,6 +81,7 @@ public class Card : MonoBehaviour
 
     public void CloseCard()
     {
+        button.SetActive(true);
         Invoke("CloseCardInvoke", 0.5f);
     }
 
