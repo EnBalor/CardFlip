@@ -22,11 +22,6 @@ public class Card : MonoBehaviour
     const float MaxTimeAfterFirstCardFlip = 5.0f;
     const float ZeroTime = 0.0f;
 
-    private void Update()
-    {
-
-    }
-
     public void Setting(int number)
     {
         idx = number;
@@ -47,7 +42,6 @@ public class Card : MonoBehaviour
                 GameManager.instance.firstCard = this;
                 GameManager.instance.SetTimeAfterFirstCardFlip(MaxTimeAfterFirstCardFlip);
             }
-
             else
             {
                 GameManager.instance.secondCard = this;
