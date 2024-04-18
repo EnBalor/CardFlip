@@ -53,24 +53,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private string GetKey()
+    {
+        switch (PlayerPrefs.GetInt("Difficulty"))
+        {
+            case 1:
+                return easyKey;
+            case 2:
+                return normalKey;
+            default:
+                return hardKey;
+
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1.0f;
-        if (PlayerPrefs.GetInt("Difficulty") == 1)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(easyKey).ToString("N2");
-        }
-
-        else if (PlayerPrefs.GetInt("Difficulty") == 2)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(normalKey).ToString("N2");
-        }
-
-        else if (PlayerPrefs.GetInt("Difficulty") == 3)
-        {
-            bestTime.text = PlayerPrefs.GetFloat(hardKey).ToString("N2");
-        }
+        
+        bestTime.text = PlayerPrefs.GetFloat(GetKey()).ToString("N2");
 
         time = 30f;
         score = 100f;
@@ -108,7 +110,7 @@ public class GameManager : MonoBehaviour
 
         if(time <= 10.0f)
         {
-            animator.SetBool("AllertTxt", true);
+            animator.SetBool("AlertTxt", true);
 
             AudioManager.instance.audioSource.pitch = 1.4f;
         }
@@ -140,7 +142,7 @@ public class GameManager : MonoBehaviour
             {
                 BestTime();
                 endTxt.SetActive(true);
-                score = time / openCount * 100;
+                score = time / (1 + openCount) * 100;
                 scoreTxt.text = score.ToString("N2");
 
                 if (PlayerPrefs.GetString("StageLevel") == "Easy")
@@ -180,77 +182,20 @@ public class GameManager : MonoBehaviour
     private void BestTime()
     {
         nowTime.text = time.ToString("N2");
+        string key = GetKey();
 
-        if(PlayerPrefs.GetInt("Difficulty") == 1)
+        if (PlayerPrefs.HasKey(key))
         {
-            if (PlayerPrefs.HasKey(easyKey))
+            if (PlayerPrefs.GetFloat(key) < time)
             {
-                float best = PlayerPrefs.GetFloat(easyKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(easyKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(easyKey, time);
+                PlayerPrefs.SetFloat(key, time);
                 bestTime.text = time.ToString("N2");
             }
         }
-
-        if (PlayerPrefs.GetInt("Difficulty") == 2)
+        else
         {
-            if (PlayerPrefs.HasKey(normalKey))
-            {
-                float best = PlayerPrefs.GetFloat(normalKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(normalKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(normalKey, time);
-                bestTime.text = time.ToString("N2");
-            }
-        }
-
-        if (PlayerPrefs.GetInt("Difficulty") == 3)
-        {
-            if (PlayerPrefs.HasKey(normalKey))
-            {
-                float best = PlayerPrefs.GetFloat(hardKey);
-                if (best < time)
-                {
-                    PlayerPrefs.SetFloat(hardKey, time);
-                    bestTime.text = time.ToString("N2");
-                }
-
-                else
-                {
-                    bestTime.text = time.ToString("N2");
-                }
-            }
-
-            else
-            {
-                PlayerPrefs.SetFloat(hardKey, time);
-                bestTime.text = time.ToString("N2");
-            }
+            PlayerPrefs.SetFloat(key, time);
+            bestTime.text = time.ToString("N2");
         }
     }
 
