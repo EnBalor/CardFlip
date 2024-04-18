@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject endTxt;
-    public GameObject scoreObj;
     public GameObject IncreaseTime;
 
     public int cardCount = 0;
@@ -34,10 +33,15 @@ public class GameManager : MonoBehaviour
     public AudioClip flipSound;
     public AudioClip matchedSound;
     public AudioClip unMatchedSound;
+    public AudioClip gameStartSound;
 
     public bool isStart = false;
 
-    string key = "bestTime";
+    string easyKey = "easyBest";
+    string normalKey = "normalBest";
+    string hardKey = "hardKey";
+
+    float timeAfterFirstCardFlip = 0.0f;
 
     private void Awake()
     {
@@ -53,9 +57,26 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
-        bestTime.text = PlayerPrefs.GetFloat(key).ToString("N2");
+        if (PlayerPrefs.GetInt("Difficulty") == 1)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(easyKey).ToString("N2");
+        }
+
+        else if (PlayerPrefs.GetInt("Difficulty") == 2)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(normalKey).ToString("N2");
+        }
+
+        else if (PlayerPrefs.GetInt("Difficulty") == 3)
+        {
+            bestTime.text = PlayerPrefs.GetFloat(hardKey).ToString("N2");
+        }
+
         time = 30f;
+        score = 100f;
         openCount = 0;
+
+        audioSource.PlayOneShot(gameStartSound);
     }
 
     // Update is called once per frame
@@ -91,6 +112,17 @@ public class GameManager : MonoBehaviour
 
             AudioManager.instance.audioSource.pitch = 1.4f;
         }
+
+        if (firstCard)
+        {
+            timeAfterFirstCardFlip -= Time.deltaTime;
+            if (timeAfterFirstCardFlip <= 0)
+            {
+                firstCard.GetComponent<Card>().CloseCard();
+                SetTimeAfterFirstCardFlip(0.0f);
+                firstCard = null;
+            }
+        }
     }
 
     public void Matched()
@@ -108,7 +140,6 @@ public class GameManager : MonoBehaviour
             {
                 BestTime();
                 endTxt.SetActive(true);
-                scoreObj.SetActive(true);
                 score = time / openCount * 100;
                 scoreTxt.text = score.ToString("N2");
 
@@ -127,7 +158,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            NameTxt.text = "½ÇÆÐ!";
+            NameTxt.text = "ì‹¤íŒ¨!";
             NameTxt.color = Color.red;
             time -= 1f;
             IncreaseTime.SetActive(true);
@@ -150,64 +181,103 @@ public class GameManager : MonoBehaviour
     {
         nowTime.text = time.ToString("N2");
 
-        if (PlayerPrefs.HasKey(key))
+        if(PlayerPrefs.GetInt("Difficulty") == 1)
         {
-            float best = PlayerPrefs.GetFloat(key);
-            if (best < time)
+            if (PlayerPrefs.HasKey(easyKey))
             {
-                PlayerPrefs.SetFloat(key, time);
-                bestTime.text = time.ToString("N2");
+                float best = PlayerPrefs.GetFloat(easyKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(easyKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
             }
 
             else
             {
+                PlayerPrefs.SetFloat(easyKey, time);
                 bestTime.text = time.ToString("N2");
             }
         }
 
-        else
+        if (PlayerPrefs.GetInt("Difficulty") == 2)
         {
-            PlayerPrefs.SetFloat(key, time);
-            bestTime.text = time.ToString("N2");
+            if (PlayerPrefs.HasKey(normalKey))
+            {
+                float best = PlayerPrefs.GetFloat(normalKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(normalKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
+            }
+
+            else
+            {
+                PlayerPrefs.SetFloat(normalKey, time);
+                bestTime.text = time.ToString("N2");
+            }
         }
 
+        if (PlayerPrefs.GetInt("Difficulty") == 3)
+        {
+            if (PlayerPrefs.HasKey(normalKey))
+            {
+                float best = PlayerPrefs.GetFloat(hardKey);
+                if (best < time)
+                {
+                    PlayerPrefs.SetFloat(hardKey, time);
+                    bestTime.text = time.ToString("N2");
+                }
+
+                else
+                {
+                    bestTime.text = time.ToString("N2");
+                }
+            }
+
+            else
+            {
+                PlayerPrefs.SetFloat(hardKey, time);
+                bestTime.text = time.ToString("N2");
+            }
+        }
     }
 
     void SettingNameTxt()
     {
         switch (firstCard.idx)
         {
-            case 0:
-                NameTxt.text = "±èÃ¢¿¬";
+            case 0: case 1:
+                NameTxt.text = "ê¹€ì°½ì—°";
                 break;
-            case 1:
-                NameTxt.text = "±èÃ¢¿¬";
+            case 2: case 3:
+                NameTxt.text = "ë°•ì„±ì¤€";
                 break;
-            case 2:
-                NameTxt.text = "¹Ú¼ºÁØ";
+            case 4: case 5:
+                NameTxt.text = "ë°•ì‹ í™˜";
                 break;
-            case 3:
-                NameTxt.text = "¹Ú¼ºÁØ";
+            case 6: case 7:
+                NameTxt.text = "ì´ì„œì˜";
                 break;
-            case 4:
-                NameTxt.text = "¹Ú½ÅÈ¯";
+            case 8: case 9:
+                NameTxt.text = "ìœ¤ì •ë¹ˆ";
                 break;
-            case 5:
-                NameTxt.text = "¹Ú½ÅÈ¯";
-                break;
-            case 6:
-                NameTxt.text = "ÀÌ¼­¿µ";
-                break;
-            case 7:
-                NameTxt.text = "ÀÌ¼­¿µ";
-                break;
-            case 8:
-                NameTxt.text = "À±Á¤ºó";
-                break;
-            case 9:
-                NameTxt.text = "À±Á¤ºó";
-                break;
-
         }
     }
+    public void SetTimeAfterFirstCardFlip(float second)
+    {
+        timeAfterFirstCardFlip = second;
+    }
 }
+

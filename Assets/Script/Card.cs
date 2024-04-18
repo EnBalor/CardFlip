@@ -17,22 +17,19 @@ public class Card : MonoBehaviour
 
     public AudioClip flipSound;
 
-    bool isFlipedBefore = false;
+    bool isFlipedOnce = false;
+    const float MaxTimeAfterFirstCardFlip = 5.0f;
+    const float ZeroTime = 0.0f;
 
     private void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("card_flip"))
-        {
-            //find ÇÔ¼ö´Â »ç¾ç¿¡ ¿µÇâÀ» ³¢Ä¡´Ï Áö¾ç
-            transform.Find("Front").gameObject.SetActive(false);
-            transform.Find("Back").gameObject.SetActive(true);
-        }
+
     }
 
     public void Setting(int number)
     {
         idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
+        frontImage.sprite = Resources.Load<Sprite>($"Card{idx}");   
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -42,35 +39,34 @@ public class Card : MonoBehaviour
         {
             audioSource.PlayOneShot(flipSound);
             anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
 
             if (GameManager.instance.firstCard == null)
             {
                 GameManager.instance.firstCard = this;
+                GameManager.instance.SetTimeAfterFirstCardFlip(MaxTimeAfterFirstCardFlip);
             }
 
             else
             {
                 GameManager.instance.secondCard = this;
+                GameManager.instance.SetTimeAfterFirstCardFlip(ZeroTime);
                 GameManager.instance.Matched();
                 GameManager.instance.openCount++;
             }
 
-            if (!isFlipedBefore)
+            if (!isFlipedOnce)
             {
-                isFlipedBefore = true;
+                isFlipedOnce = true;
                 SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
-                //»öº¯È­°¡ Á» ¹Ì¹ÌÇÑµí, ±êÇãºê ÀÌÈÄ ÇÇµå¹éÇØ¼­ ¼öÁ¤ÇÏ´Â°É·Î
-                //½ÃÀÛÇÒ¶§ È¿°úÀ½ Ãß°¡ »ı°¢ÇØº¸±â
-                spriteRenderer.color = new Color(0.9f, 0.9f, 0.9f, 1);
+
+                //ìƒ‰ë³€í™”ê°€ ì¢€ ë¯¸ë¯¸í•œë“¯, ê¹ƒí—ˆë¸Œ ì´í›„ í”¼ë“œë°±í•´ì„œ ìˆ˜ì •í•˜ëŠ”ê±¸ë¡œ
+                //ì‹œì‘í• ë•Œ íš¨ê³¼ìŒ ì¶”ê°€ ìƒê°í•´ë³´ê¸°
+                spriteRenderer.color = new Color(0.7f, 0.7f, 0.7f, 1);
             }
         }
     }
 
 
-    //ÀÎº¸Å© °ü·Ã ÇÔ¼ö´Â °°ÀÌ ÄÚ·çÆ¾ °øºÎÇÏ´Â ½Ã°£ °¡Áö¸é ÁÁÀ» °Í °°À½
-    //ÄÚ·çÆ¾À¸·Î ¼öÁ¤ÇÏ´Â ÀÛ¾÷ ÇÏ³ª¾¿ ÇÏ¸é ÁÁÀ»µí
     public void DestroyCard()
     {
         Invoke("DestroyCardInvoke", 0.5f);
@@ -93,3 +89,4 @@ public class Card : MonoBehaviour
         back.SetActive(true);
     }
 }
+
