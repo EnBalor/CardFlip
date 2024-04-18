@@ -10,8 +10,9 @@ public class StageButton : MonoBehaviour
     public Text bntTxt;
     public void ChooseStage()
     {
-        PlayerPrefs.SetString("StageLevel", bntTxt.text); 
+        PlayerPrefs.SetString("StageLevel", bntTxt.text); // StageLevel에 버튼의 텍스트 저장(Easy, Normal, Hard)
 
+        // 난이도를 정수로 저장(1, 2, 3)
         if (PlayerPrefs.GetString("StageLevel") == "Easy")
         {
             PlayerPrefs.SetInt("Difficulty", 1);

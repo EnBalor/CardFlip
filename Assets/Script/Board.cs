@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Runtime.InteropServices;
 
 public class Board : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 난이도(1,2,3) 값으로 배열 크기 조정  
         int diff = PlayerPrefs.GetInt("Difficulty") * 4;
         Array.Resize(ref arr, diff + 4);
 
@@ -27,12 +29,12 @@ public class Board : MonoBehaviour
             }
         }
 
+        //일정 간격으로 카드를 생성하기 위해 코루틴 사용
         StartCoroutine(CardAppear());
     }
 
     private IEnumerator CardAppear()
     {
-
         for (int i = 0; i < arr.Length; i++)
         {
             GameObject go = Instantiate(card, this.transform);
@@ -46,7 +48,9 @@ public class Board : MonoBehaviour
 
             GameManager.instance.cardCount++;
 
+            //카드가 한번에 생성되지 않도록 약간의 시간 간격을 줌
             yield return new WaitForSeconds(0.1f);
         }
     }
 }
+

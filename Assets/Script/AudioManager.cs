@@ -32,5 +32,4 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = this.backGroundMusic;
         audioSource.Play();
     }
-
 }
