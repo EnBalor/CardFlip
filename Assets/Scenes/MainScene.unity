@@ -242,7 +242,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 1977975044}
   NameTxt: {fileID: 62607846}
   endTxt: {fileID: 286354276}
-  IncreaseTime: {fileID: 1333989780}
+  increaseTime: {fileID: 1333989780}
   cardCount: 0
   openCount: 0
   time: 0
@@ -936,7 +936,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857db46917e92144d8a5f71d379ce184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertSound: {fileID: 0}
+  alertSound: {fileID: 8300000, guid: 1a4a21a03aeabf048a9b762cc2cf3372, type: 3}
 --- !u!1 &673456390
 GameObject:
   m_ObjectHideFlags: 0
