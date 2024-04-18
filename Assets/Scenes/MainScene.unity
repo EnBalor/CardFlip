@@ -242,7 +242,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 1977975044}
   NameTxt: {fileID: 62607846}
   endTxt: {fileID: 286354276}
-  IncreaseTime: {fileID: 1333989780}
+  increaseTime: {fileID: 1333989780}
   cardCount: 0
   openCount: 0
   time: 0

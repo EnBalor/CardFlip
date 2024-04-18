@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject endTxt;
-    public GameObject IncreaseTime;
+    public GameObject increaseTime;
 
     public int cardCount = 0;
     public int openCount = 0;
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
 
     public bool isStart = false;
 
-    string easyKey = "easyBest";
-    string normalKey = "normalBest";
-    string hardKey = "hardKey";
+    readonly string easyKey = "easyBest";
+    readonly string normalKey = "normalBest";
+    readonly string hardKey = "hardKey";
 
     float timeAfterFirstCardFlip = 0.0f;
 
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
             NameTxt.text = "실패!";
             NameTxt.color = Color.red;
             time -= 1f;
-            IncreaseTime.SetActive(true);
+            increaseTime.SetActive(true);
             audioSource.PlayOneShot(unMatchedSound);
             Invoke("TxtControl", 0.5f);
             firstCard.CloseCard();
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
 
     void TxtControl()
     {
-        IncreaseTime.SetActive(false);
+        increaseTime.SetActive(false);
     }
 
     private void BestTime()
