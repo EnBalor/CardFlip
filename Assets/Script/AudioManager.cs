@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public AudioSource audioSource;
-
+    
     public AudioClip backGroundMusic;
 
     private void Awake()
